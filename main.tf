@@ -17,6 +17,10 @@ data "terraform_remote_state" "global" {
   }
 }
 
+data "external" "org" {
+  program = ["${var.org}"]
+}
+
 data "terraform_remote_state" "env" {
   backend = "s3"
 
@@ -38,10 +42,6 @@ resource "aws_security_group" "app" {
     "Env"       = "${data.terraform_remote_state.env.env_name}"
     "ManagedBy" = "terraform"
   }
-}
-
-resource "aws_iam_group" "app" {
-  name = "${data.terraform_remote_state.env.env_name}-${var.app_name}"
 }
 
 resource "aws_kms_key" "app" {
