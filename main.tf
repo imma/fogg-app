@@ -1,10 +1,8 @@
-variable "global_bucket" {}
-variable "global_key" {}
 variable "global_region" {}
+variable "global_bucket" {}
 
-variable "env_bucket" {}
+variable "global_key" {}
 variable "env_key" {}
-variable "env_region" {}
 
 data "terraform_remote_state" "global" {
   backend = "s3"
@@ -25,9 +23,9 @@ data "terraform_remote_state" "env" {
   backend = "s3"
 
   config {
-    bucket         = "${var.env_bucket}"
+    bucket         = "${var.global_bucket}"
     key            = "${var.env_key}"
-    region         = "${var.env_region}"
+    region         = "${var.global_region}"
     dynamodb_table = "terraform_state_lock"
   }
 }
