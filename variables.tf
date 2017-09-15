@@ -1,7 +1,3 @@
-variable "org" {
-  default = []
-}
-
 variable "app_name" {}
 
 variable "az_count" {}

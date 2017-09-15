@@ -15,10 +15,6 @@ data "terraform_remote_state" "global" {
   }
 }
 
-data "external" "org" {
-  program = ["${var.org}"]
-}
-
 data "terraform_remote_state" "env" {
   backend = "s3"
 
