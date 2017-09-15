@@ -27,7 +27,7 @@ data "terraform_remote_state" "env" {
 }
 
 resource "aws_security_group" "app" {
-  name_prefix = "${data.terraform_remote_state.env.env_name}-${var.app_name}-"
+  name        = "${data.terraform_remote_state.env.env_name}-${var.app_name}"
   description = "Application ${var.app_name}"
   vpc_id      = "${data.terraform_remote_state.env.vpc_id}"
 
