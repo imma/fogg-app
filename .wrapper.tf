@@ -1,5 +1,5 @@
 module "app" {
-  source = "git@github.com:imma/fogg-app"
+  source = "module/imma/fogg-app"
 
   global_region = "${var.remote_region}"
   global_bucket = "${var.remote_bucket}"
